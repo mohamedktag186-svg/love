@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>قصتنا ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(180deg, #900C3F 0%, #C70039 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- شاشة الدخول --- */
+        #login-screen { display: flex; }
+        .lock-icon { font-size: 60px; margin-bottom: 20px; }
+        h2 { color: #900C3F; margin-bottom: 10px; font-weight: bold; }
+        .sub-text { color: #666; margin-bottom: 30px; font-size: 14px; }
+        .input-group { width: 100%; margin-bottom: 20px; }
+        input[type="password"] {
+            width: 100%; padding: 15px; border-radius: 50px;
+            border: 2px solid #ddd; text-align: center; font-size: 18px; outline: none; transition: 0.3s;
+        }
+        input[type="password"]:focus { border-color: #C70039; }
+        .btn-main {
+            background: linear-gradient(90deg, #FF416C 0%, #FF4B2B 100%);
+            color: white; border: none; padding: 15px 40px; border-radius: 50px;
+            font-size: 18px; font-weight: bold; cursor: pointer; width: 100%;
+            box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4); margin-top: 10px;
+        }
+        .hearts-deco { margin-top: 30px; font-size: 24px; display: flex; justify-content: center; gap: 15px; }
+        .error-msg { color: red; font-size: 14px; margin-top: 10px; display: none; }
+
+        /* --- شاشة الرسالة --- */
+        #message-screen { display: none; animation: fadeIn 0.8s; align-items: flex-start; justify-content: flex-start; text-align: right; overflow-y: auto; }
+        .message-content { text-align: center; width: 100%; }
+        .love-letter { text-align: center; line-height: 1.8; font-size: 16px; color: #444; margin: 20px 0; white-space: pre-line; }
+
+        /* --- شاشة الميديا (الجديدة) --- */
+        #media-screen { display: none; animation: fadeIn 0.8s; padding-top: 20px; padding-bottom: 20px; justify-content: flex-start;}
+        
+        /* تنسيق الفيديو */
+        video {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        /* تنسيق إطار الصور */
+        .photo-frame {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px; /* مسافة تحت كل صورة */
+            border: 4px solid #f0f0f0;
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        
+        <div id="login-screen" class="card">
+            <div class="lock-icon">🔒</div>
+            <h2>أدخل كلمة السر</h2>
+            <p class="sub-text">🔐 عشان تفتح قلبنا</p>
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="•••">
+            </div>
+            <button class="btn-main" onclick="checkPassword()">Unlock 🔓</button>
+            <p class="error-msg" id="errorMsg">الباسورد غلط، جرب تاني 😉</p>
+            <div class="hearts-deco"><span>💝</span> <span>❤️</span> <span>💖</span> <span>💘</span></div>
+        </div>
+
+        <div id="message-screen" class="card">
+            <div class="message-content">
+                <div style="font-size: 40px; margin-bottom: 10px;">💌</div>
+                <h2>منارتي يحبيبي </h2>
+                <div class="love-letter">
+                    وحشتيني على فكره طولتي علي حاسس في حجه مضيقاكي يهمري ومش عارف اي ..
+                    ممكن تكون درجه مش عجباكي يحبيبي بس انا شايف انك بقيتي اشطر من الاول ومركزه علي نفسك اكتر.
+                    اي كان اي الدرجه يحبيبي لو زعلنا عليها وقعدنا نضايق نفسنا مش هنعرف نعوضها خديها حافز و ذاكري اكتر..
+                    فوقي يكتكوته ونركز ف ال علينا دلوقتي كل حاجه تتعوض والترم التاني هتبقي احسن واشطر واحده واحده .
+                    احنا لسه اول ترم وبدايه المشوار طبيعي نغلط بس لازم نتعلم ونركز اكتر علي نفسنا بعد كدا ❤️
+                    وانا عارف يعمري انك شطوره ومع الوقت هنترتب سوا علي الدفعه .
+                    لو في حاجه تانيه مضيقاكي قولي يحبيبي ونحل كل حاجه سوا متفكريش وحدك .
+                </div>
+                <div style="margin: 20px 0; color: #E91E63; font-weight: bold;">
+                    ✨ تعالي نشوف اي هنا ✨
+                </div>
+                <button class="btn-main" onclick="showMedia()">دوسي هنا يكتكوته  🚀</button>
+            </div>
+        </div>
+
+       <div id="media-screen" class="card">
+            <h2>🎬 فديو نونو عجبني</h2>
+            
+            <video controls> 
+                <source src="video.mp4" type="video/mp4">
+                المتصفح لا يدعم تشغيل الفيديو.
+            </video>
+
+            <br>
+            
+            <div class="photo-frame">
+                <img src="couple1.jpg" alt="صورتنا 1">
+            </div>
+
+            <div class="photo-frame">
+                <img src="couple2.jpg" alt="صورتنا 2">
+            </div>
+
+            <p style="margin-top: 10px;">𝐼 𝐿𝑂𝑉𝐸 𝑌𝑂𝑈 ❤️</p>
+        </div>
+
+    </div>
+
+    <script>
+        // --- الباسورد ---
+        const SECRET_PASS = "12012007"; 
+        // ------------------
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            if(input === SECRET_PASS) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('message-screen').style.display = 'flex';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+                const card = document.getElementById('login-screen');
+                card.style.transform = 'translateX(10px)';
+                setTimeout(() => card.style.transform = 'translateX(-10px)', 100);
+                setTimeout(() => card.style.transform = 'translateX(0)', 200);
+            }
+        }
+
+        function showMedia() {
+            document.getElementById('message-screen').style.display = 'none';
+            document.getElementById('media-screen').style.display = 'flex';
+            // تشغيل الفيديو تلقائياً عند الوصول للشاشة (اختياري)
+             document.querySelector('video').play(); 
+        }
+    </script>
+</body>
+</html>
